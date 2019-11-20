@@ -89,8 +89,6 @@ The following files are created in output directory:
 - `structureGenoypes_noMissingData-Columns.tsv` alternate input file for [STRUCTURE](https://web.stanford.edu/group/pritchardlab/structure.html)
 - `structureGenotypes.tsv` input file for [STRUCTURE](https://web.stanford.edu/group/pritchardlab/structure.html)
 
-> The `snpTable.tsv` file will not display positions that are the same call across all samples (e.g. if all samples have `N`,  or `.` [a reference call])!
-
 ### `snpStatistics.tsv`
 
 The snpStatistics column definitions are as follows
@@ -105,10 +103,10 @@ The snpStatistics column definitions are as follows
 8. **refCall**: Number of reference calls made
 9. **SNP Calls (all)**: Total number of non-reference homozygous and heterozgyous calls made
 10. **SNP Calls (het)**: Total number of non-reference calls not passing user-supplied heterozygosity/homozygosity thresholds
-11. **coverage(fold)**: Average number of reads covering final calls
-12. **coverage(percent)**: Percent coverage of all positions with final calls
+11. **coverage(fold)**: Average number of reads covering final SNP and reference calls passing thresholds
+12. **coverage(percent)**: Percent coverage of all entire reference with SNP and reference calls passing thresholds
 
-> Even if 'EMIT_ALL_SITES' is turned on, GATK will ignore any non-ACGT positions in the reference entirely (e.g. Ns), and will not export that position in the VCF file. Thus, refCall + SNP Calls (all) may not match allPos - noCall - discardedRefCall - discardedVarCall - filteredVarCall - unhandledGenotype as these positions are not supplied to MultiVCFAnalyzer'. You can check for this by checking the discrepancy of the two previous calculations is equal across every sample.
+> Currently even if 'EMIT_ALL_SITES' is turned on, GATK will ignore any non-ACGT positions in the reference entirely (e.g. Ns), and will not export that position in the VCF file. Thus, refCall + SNP Calls (all) may not match allPos - noCall - discardedRefCall - discardedVarCall - filteredVarCall - unhandledGenotype as these positions are not supplied to MultiVCFAnalyzer'. You can check for this by checking the discrepancy of the two previous calculations is equal across every sample. This will be fixed in a future release.
 
 ## FAQs
 
